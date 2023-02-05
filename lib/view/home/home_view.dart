@@ -1,6 +1,7 @@
 import 'package:firebase_2/utils/functions/utilites.dart';
 import 'package:firebase_2/utils/routs/routes_name.dart';
 import 'package:firebase_2/utils/widgets/app_text.dart';
+import 'package:firebase_2/view/home/add_post.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,7 @@ class _HomeViewState extends State<HomeView> {
                   (error, stackTrace) {
                     Utilities().toastMessage(error.toString());
                   },
-                 );
+                );
               },
               icon: const Icon(
                 Icons.logout,
@@ -39,6 +40,14 @@ class _HomeViewState extends State<HomeView> {
         children: [
           AppText(text: 'Home Screen'),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>const PostView()));
+        },
+        child: Icon(
+          Icons.add,
+        ),
       ),
     );
   }

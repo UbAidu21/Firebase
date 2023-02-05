@@ -5,7 +5,7 @@ import 'package:firebase_2/utils/widgets/app_text.dart';
 import 'package:firebase_2/view/home/home_view.dart';
 import 'package:firebase_2/view/login_view/login_view.dart';
 import 'package:firebase_2/view/login_view/login_with_phone.dart';
-import 'package:firebase_2/view/login_view/verify_code.dart';
+
 import 'package:firebase_2/view/signup_view/signup_view.dart';
 import 'package:firebase_2/view/splash/splash_view.dart';
 import 'package:flutter/material.dart';

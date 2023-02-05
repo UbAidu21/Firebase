@@ -38,7 +38,7 @@ class _LoginWithPhoneState extends State<LoginWithPhone> {
                 size: 150,
               ),
               CustomTextField(
-                nameController: phoneNumberController,
+                controller: phoneNumberController,
                 hint: '+92 340 9421345',
                 label: 'Mobile Number',
                 textInputType: TextInputType.number,

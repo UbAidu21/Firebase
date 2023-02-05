@@ -60,7 +60,7 @@ class _LoginViewState extends State<LoginView> {
                       child: Column(
                         children: [
                           CustomTextField(
-                            nameController: emailController,
+                            controller: emailController,
                             label: 'Email',
                             hint: 'Email',
                             prefixIcon: const Icon(Icons.person_outline),
@@ -70,7 +70,7 @@ class _LoginViewState extends State<LoginView> {
                               valueListenable: toggle,
                               builder: (context, value, child) {
                                 return CustomTextField(
-                                  nameController: passwordController,
+                                  controller: passwordController,
                                   obscureText: toggle.value,
                                   prefixIcon: const Icon(Icons.lock_open),
                                   suffixIcon: InkWell(

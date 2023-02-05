@@ -69,7 +69,7 @@ class _SignUpViewState extends State<SignUpView> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     CustomTextField(
-                      nameController: nameController,
+                      controller: nameController,
                       label: 'Name',
                       hint: 'Name',
                       prefixIcon: const Icon(Icons.person_outline),
@@ -82,7 +82,7 @@ class _SignUpViewState extends State<SignUpView> {
                     ),
                     fixheight,
                     CustomTextField(
-                      nameController: emailController,
+                      controller: emailController,
                       label: 'Email',
                       hint: 'Email',
                       prefixIcon:const Icon(Icons.alternate_email),
@@ -95,7 +95,7 @@ class _SignUpViewState extends State<SignUpView> {
                     ),
                     fixheight,
                     CustomTextField(
-                      nameController: numberController,
+                      controller: numberController,
                       label: 'Number',
                       hint: 'Number',
                       prefixIcon: const Icon(Icons.phone),
@@ -111,7 +111,7 @@ class _SignUpViewState extends State<SignUpView> {
                         valueListenable: toggle,
                         builder: (context, value, child) {
                           return CustomTextField(
-                            nameController: passwordController,
+                            controller: passwordController,
                             obscureText: toggle.value,
                             prefixIcon:const Icon(Icons.lock_open),
                             textInputType: TextInputType.visiblePassword,

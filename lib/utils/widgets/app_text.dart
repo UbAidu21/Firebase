@@ -7,6 +7,7 @@ class AppText extends StatelessWidget {
     this.color,
     this.fontSize,
     this.fontWeight,
+    this.maxLines,
     super.key,
   });
 
@@ -14,11 +15,13 @@ class AppText extends StatelessWidget {
   double? fontSize;
   FontWeight? fontWeight;
   Color? color;
+  int? maxLines;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
+      maxLines: maxLines,
       style: TextStyle(
         fontSize: fontSize,
         fontWeight: fontWeight,

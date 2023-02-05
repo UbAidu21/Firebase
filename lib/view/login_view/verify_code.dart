@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 class VerifyNumber extends StatefulWidget {
   final String verification;
-  VerifyNumber({
+  const VerifyNumber({
     required this.verification,
     super.key,
   });
@@ -41,7 +41,7 @@ class _VerifyNumberState extends State<VerifyNumber> {
                 size: 150,
               ),
               CustomTextField(
-                nameController: codeController,
+                controller: codeController,
                 hint: 'eg.3938',
                 label: 'Code',
                 textInputType: TextInputType.number,
@@ -64,6 +64,7 @@ class _VerifyNumberState extends State<VerifyNumber> {
 
                         try{
                           await auth.signInWithCredential(authCredential);
+                          // ignore: use_build_context_synchronously
                           Navigator.pushReplacementNamed(context, RoutesName.home);
                           loading.value = false;
                         }catch(e){
