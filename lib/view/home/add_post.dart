@@ -53,17 +53,18 @@ class _PostViewState extends State<PostView> {
                       loading.value = true;
 
                       var db = databaseRef.ref(user);
-                      db
-                          .child(
-                              '${DateTime.now().year}:${DateTime.now().month}:${DateTime.now().day}:${DateTime.now().minute}:${DateTime.now().second}')
-                          .set(
+                      String id =
+                          DateTime.now().millisecondsSinceEpoch.toString();
+
+                      db.child(id).set(
                         {
-                          'id' : id++,
+                          'id': id,
                           'post': postController.text.toString(),
                         },
                       ).then((value) {
                         loading.value = false;
                         Utilities().toastMessage("Data Okhata");
+                        Navigator.pop(context);
                       }).onError((error, stackTrace) {
                         loading.value = false;
                         Utilities().toastMessage(error.toString());
@@ -78,4 +79,6 @@ class _PostViewState extends State<PostView> {
       ),
     );
   }
+
+  
 }

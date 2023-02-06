@@ -4,18 +4,19 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   CustomTextField({
     super.key,
-    required this.controller,
+    this.controller,
     this.obscureText,
     this.prefixIcon,
     this.suffixIcon,
-    required this.hint,
+    this.hint,
     this.label,
     this.validator,
     this.textInputType,
     this.maxLines,
+    this.onChanged,
   });
 
-  TextEditingController controller;
+  TextEditingController? controller;
   bool? obscureText;
   Widget? prefixIcon;
   Widget? suffixIcon;
@@ -24,6 +25,8 @@ class CustomTextField extends StatelessWidget {
   String? Function(String?)? validator;
   TextInputType? textInputType;
   int? maxLines;
+  void Function(String)? onChanged;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -42,6 +45,7 @@ class CustomTextField extends StatelessWidget {
           // maxLines: maxLines,
         ),
       ),
+      onChanged: onChanged,
     );
   }
 }
