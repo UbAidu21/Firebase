@@ -21,5 +21,8 @@ class RoutesName{
   //VERIFY NUMBER
   static const String verifyNumber = 'verify_number';
 
+  //FIRESTORE
+  static const String firestoreList = 'firestore_list_view';
+
   
 }

@@ -1,5 +1,6 @@
 import 'package:firebase_2/utils/routs/routes_name.dart';
 import 'package:firebase_2/utils/routs/routs.dart';
+import 'package:firebase_2/view/firestore/firestore_list_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -21,14 +22,16 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark
       ),
       theme: ThemeData(
-                brightness: Brightness.dark,
+                // brightness: Brightness.dark,
         primarySwatch: Colors.teal,
         // ignore: prefer_const_constructors
         iconTheme: IconThemeData(
           color: Colors.teal
         )
       ),
-      // home: const SplashView(),
+      // home: const FirestoreListView(),
+      debugShowCheckedModeBanner: false,
+
       initialRoute: RoutesName.splash,
       onGenerateRoute: Routes.generateRoute,
     );

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_2/view/firestore/firestore_list_view.dart';
 import 'package:firebase_2/view/home/home_view.dart';
 import 'package:firebase_2/view/login_view/login_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -25,7 +26,7 @@ class SplashServices {
       Timer(
           const Duration(seconds: 3),
           () => Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return const HomeView();
+                return const FirestoreListView();
               })));
     } else {
       Timer(

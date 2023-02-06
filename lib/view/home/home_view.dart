@@ -2,6 +2,7 @@ import 'package:firebase_2/utils/functions/utilites.dart';
 import 'package:firebase_2/utils/routs/routes_name.dart';
 import 'package:firebase_2/utils/widgets/app_text.dart';
 import 'package:firebase_2/utils/widgets/custom_text_field.dart';
+import 'package:firebase_2/utils/widgets/show_my_dialog.dart';
 import 'package:firebase_2/view/home/add_post.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -19,16 +20,12 @@ class _HomeViewState extends State<HomeView> {
   final auth = FirebaseAuth.instance;
   final searchController = TextEditingController();
   final editController = TextEditingController();
+  
 
   @override
   Widget build(BuildContext context) {
     var user = auth.currentUser!.uid;
-    final ref = FirebaseDatabase.instance.ref(user);
-
-    //SHOWING DIalog FOR UPDATION
-
-
-
+    final ref = FirebaseDatabase.instance.ref(user);    
     return Scaffold(
       appBar: AppBar(
         title: AppText(text: 'Home Screen'),
@@ -139,6 +136,7 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
   }
+
 }
 
   //TODO: implement with StreamBuilder
@@ -173,48 +171,3 @@ class _HomeViewState extends State<HomeView> {
 //           ),
 
 
-    Future<void> showMyDialog(String title, String id,BuildContext context) async {
-      final editController= TextEditingController();
-      final auth = FirebaseAuth.instance;
-
-      final user = auth.currentUser!.uid;
-
-      final ref = FirebaseDatabase.instance.ref(user);
-      editController.text = title;
-      return showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: AppText(text: 'Update '),
-              content: Container(
-                child: CustomTextField(
-                  controller: editController,
-                  hint: 'Edit',
-                ),
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: AppText(text: 'cancel'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    ref
-                        .child(id)
-                        .update({'post': editController.text})
-                        .then((value) =>Utilities().toastMessage('Post Updated'))
-                        .onError(
-                          (error, stackTrace) {
-                            Utilities().toastMessage(error.toString());
-                          },
-                        );
-                  },
-                  child: AppText(text: 'Update'),
-                ),
-              ],
-            );
-          });
-    }

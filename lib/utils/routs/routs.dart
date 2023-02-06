@@ -2,6 +2,7 @@
 
 import 'package:firebase_2/utils/routs/routes_name.dart';
 import 'package:firebase_2/utils/widgets/app_text.dart';
+import 'package:firebase_2/view/firestore/firestore_list_view.dart';
 import 'package:firebase_2/view/home/home_view.dart';
 import 'package:firebase_2/view/login_view/login_view.dart';
 import 'package:firebase_2/view/login_view/login_with_phone.dart';
@@ -29,6 +30,10 @@ class Routes {
       
       case RoutesName.loginWithPhone:
         return MaterialPageRoute(builder: (BuildContext context) => const LoginWithPhone());
+      
+      
+      case RoutesName.firestoreList:
+        return MaterialPageRoute(builder: (BuildContext context) => const FirestoreListView());
       
       case RoutesName.verifyNumber:
         // return MaterialPageRoute(builder: (BuildContext context) => const VerifyNumber());
