@@ -2,6 +2,7 @@
 
 import 'package:firebase_2/utils/routs/routes_name.dart';
 import 'package:firebase_2/utils/widgets/app_text.dart';
+import 'package:firebase_2/view/Impage_upload/upload_image.dart';
 import 'package:firebase_2/view/firestore/firestore_list_view.dart';
 import 'package:firebase_2/view/home/home_view.dart';
 import 'package:firebase_2/view/login_view/login_view.dart';
@@ -37,6 +38,9 @@ class Routes {
       
       case RoutesName.verifyNumber:
         // return MaterialPageRoute(builder: (BuildContext context) => const VerifyNumber());
+      
+      case RoutesName.uploadImage:
+        return MaterialPageRoute(builder: (BuildContext context) => const UploadImageView());
 
 
         

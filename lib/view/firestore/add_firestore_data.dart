@@ -63,6 +63,7 @@ class _AddFirestoreDataState extends State<AddFirestoreData> {
                           .then((value) {
                             loading.value = false;
                             Utilities().toastMessage('Data added to Firestore');
+                            Navigator.pop(context);
                           })
                           .onError((error, stackTrace) {
                             Utilities().toastMessage(error.toString());

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_2/utils/functions/utilites.dart';
 import 'package:firebase_2/utils/routs/routes_name.dart';
 import 'package:firebase_2/utils/widgets/app_text.dart';
@@ -21,6 +22,11 @@ class _FirestoreListViewState extends State<FirestoreListView> {
   final auth = FirebaseAuth.instance;
   final searchController = TextEditingController();
   final editController = TextEditingController();
+
+  final firestoredb =
+      FirebaseFirestore.instance.collection('users').snapshots();
+  CollectionReference collection_ref =
+      FirebaseFirestore.instance.collection('users');
 
   @override
   Widget build(BuildContext context) {
@@ -50,20 +56,45 @@ class _FirestoreListViewState extends State<FirestoreListView> {
       ),
       body: Column(
         children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return Card(
-                  child: ListTile(
-                    title: AppText(
-                      text: 'text',
+          StreamBuilder<QuerySnapshot>(
+              stream: firestoredb,
+              builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return AppText(text: 'Something went wrong');
+                } else {
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder: (context, index) {
+                        return Card(
+                          child: ListTile(
+                            onTap: () {
+                              collection_ref
+                                  .doc(snapshot.data!.docs[index]['id']
+                                      .toString())
+                                  .update({'title': 'Update Ho Ja Bhai'})
+                                  .then((value) {
+                                     Utilities().toastMessage('Updated');
+                                  })
+                                  .onError((error, stackTrace) {
+                                    Utilities().toastMessage(error.toString());
+                                  });
+                            },
+                            title: AppText(
+                              text: '${snapshot.data!.docs[index]['title']}',
+                            ),
+                            subtitle: AppText(
+                              text: snapshot.data!.docs[index].id,
+                            ),
+                          ),
+                        );
+                      },
                     ),
-                  ),
-                );
-              },
-            ),
-          ),
+                  );
+                }
+              }),
         ],
       ),
       floatingActionButton: FloatingActionButton(

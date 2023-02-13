@@ -24,5 +24,9 @@ class RoutesName{
   //FIRESTORE
   static const String firestoreList = 'firestore_list_view';
 
+  //UPLOAD IMAGE TO FIREBASE STORAGE
+
+  static const String uploadImage = 'upload_image';
+
   
 }
