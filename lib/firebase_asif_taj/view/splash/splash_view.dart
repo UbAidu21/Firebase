@@ -1,4 +1,4 @@
-import 'package:firebase_2/services/splash_services.dart';
+import 'package:firebase_2/firebase_asif_taj/services/splash_services.dart';
 import 'package:flutter/material.dart';
 
 class SplashView extends StatefulWidget {

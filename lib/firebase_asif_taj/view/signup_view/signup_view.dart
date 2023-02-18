@@ -1,9 +1,9 @@
-import 'package:firebase_2/databases/firebase/user_register.dart';
+import 'package:firebase_2/firebase_asif_taj/databases/firebase/user_register.dart';
 import 'package:firebase_2/utils/functions/utilites.dart';
 import 'package:firebase_2/utils/widgets/app_button.dart';
 import 'package:firebase_2/utils/widgets/app_text.dart';
 import 'package:firebase_2/utils/widgets/custom_text_field.dart';
-import 'package:firebase_2/view/splash/splash_view.dart';
+import 'package:firebase_2/firebase_asif_taj/view/splash/splash_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

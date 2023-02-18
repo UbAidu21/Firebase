@@ -2,14 +2,14 @@
 
 import 'package:firebase_2/utils/routs/routes_name.dart';
 import 'package:firebase_2/utils/widgets/app_text.dart';
-import 'package:firebase_2/view/Impage_upload/upload_image.dart';
-import 'package:firebase_2/view/firestore/firestore_list_view.dart';
-import 'package:firebase_2/view/home/home_view.dart';
-import 'package:firebase_2/view/login_view/login_view.dart';
-import 'package:firebase_2/view/login_view/login_with_phone.dart';
+import 'package:firebase_2/firebase_asif_taj/view/Impage_upload/upload_image.dart';
+import 'package:firebase_2/firebase_asif_taj/view/firestore/firestore_list_view.dart';
+import 'package:firebase_2/firebase_asif_taj/view/home/home_view.dart';
+import 'package:firebase_2/firebase_asif_taj/view/login_view/login_view.dart';
+import 'package:firebase_2/firebase_asif_taj/view/login_view/login_with_phone.dart';
 
-import 'package:firebase_2/view/signup_view/signup_view.dart';
-import 'package:firebase_2/view/splash/splash_view.dart';
+import 'package:firebase_2/firebase_asif_taj/view/signup_view/signup_view.dart';
+import 'package:firebase_2/firebase_asif_taj/view/splash/splash_view.dart';
 import 'package:flutter/material.dart';
 
 class Routes {

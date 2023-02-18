@@ -1,8 +1,9 @@
-import 'package:firebase_2/databases/firebase/user_register.dart';
+import 'package:firebase_2/firebase_asif_taj/databases/firebase/user_register.dart';
 import 'package:firebase_2/utils/routs/routes_name.dart';
 import 'package:firebase_2/utils/widgets/app_button.dart';
 import 'package:firebase_2/utils/widgets/app_text.dart';
 import 'package:firebase_2/utils/widgets/custom_text_field.dart';
+import 'package:firebase_2/firebase_asif_taj/view/forgot_password/forgot_password.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -109,6 +110,16 @@ class _LoginViewState extends State<LoginView> {
                       height: 60,
                     ),
                     fixheight,
+                    Align
+                    (alignment: Alignment.topRight,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>ForgotPasswordView()));
+                        },
+                        child: AppText(text: 'Forgot Password?'),
+                      ),
+                    ),
+                    fixheight,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -128,8 +139,8 @@ class _LoginViewState extends State<LoginView> {
                       ],
                     ),
                     InkWell(
-                      onTap: (){
-                          Navigator.pushNamed(context,RoutesName.loginWithPhone);
+                      onTap: () {
+                        Navigator.pushNamed(context, RoutesName.loginWithPhone);
                       },
                       child: Container(
                         height: 50,

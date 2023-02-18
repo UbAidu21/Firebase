@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:firebase_2/utils/functions/utilites.dart';
 import 'package:firebase_2/utils/widgets/app_button.dart';
 import 'package:firebase_2/utils/widgets/app_text.dart';
-import 'package:firebase_2/view/splash/splash_view.dart';
+import 'package:firebase_2/firebase_asif_taj/view/splash/splash_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -20,9 +21,11 @@ class UploadImageView extends StatefulWidget {
 class _UploadImageViewState extends State<UploadImageView> {
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
+      
   File? _image;
   final picker = ImagePicker();
-  DatabaseReference databaseRef = FirebaseDatabase.instance.ref('posts');
+  final user = FirebaseAuth.instance.currentUser;
+  DatabaseReference databaseRef = FirebaseDatabase.instance.ref('post');
 
   Future getImageGallery() async {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
@@ -37,6 +40,7 @@ class _UploadImageViewState extends State<UploadImageView> {
 
   @override
   Widget build(BuildContext context) {
+  
     return Scaffold(
       appBar: AppBar(
         title: AppText(text: 'Image Upload'),
@@ -84,13 +88,33 @@ class _UploadImageViewState extends State<UploadImageView> {
               height: 60,
               borderRadius: 30,
               onPressed: () async {
-                firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance.ref('/foldername'+'123');
-                firebase_storage.UploadTask uploadTask = ref.putFile(_image!.absolute);
 
-                await Future.value(uploadTask);
+                var imgId = DateTime.now().millisecondsSinceEpoch.toString();
+                firebase_storage.Reference ref = firebase_storage
+                    .FirebaseStorage.instance
+                    .ref('/foldername/'+imgId);
+                firebase_storage.UploadTask uploadTask =
+                    ref.putFile(_image!.absolute);
 
-                var newUrl = ref.getDownloadURL();
-              },
+                 Future.value(uploadTask).then((value)async{
+                  var newUrl =await ref.getDownloadURL();
+
+
+                databaseRef
+                    .child(imgId)
+                    .set({'id': imgId, 'title': newUrl.toString()}).then((value){
+                        Utilities().toastMessage('Image is Uploaded');
+                    }).onError((error, stackTrace){
+                      Utilities().toastMessage('$error');
+                    });
+
+                }).onError((error, stackTrace){
+                  Utilities().toastMessage(error.toString());
+                });
+
+                
+                
+              }
             ),
           )
         ],

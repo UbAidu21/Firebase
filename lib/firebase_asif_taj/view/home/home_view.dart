@@ -3,7 +3,7 @@ import 'package:firebase_2/utils/routs/routes_name.dart';
 import 'package:firebase_2/utils/widgets/app_text.dart';
 import 'package:firebase_2/utils/widgets/custom_text_field.dart';
 import 'package:firebase_2/utils/widgets/show_my_dialog.dart';
-import 'package:firebase_2/view/home/add_post.dart';
+import 'package:firebase_2/firebase_asif_taj/view/home/add_post.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';

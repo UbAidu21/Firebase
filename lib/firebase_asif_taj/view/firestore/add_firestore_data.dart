@@ -1,31 +1,31 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_2/utils/functions/utilites.dart';
 import 'package:firebase_2/utils/widgets/app_button.dart';
 import 'package:firebase_2/utils/widgets/app_text.dart';
 import 'package:firebase_2/utils/widgets/custom_text_field.dart';
-import 'package:firebase_2/view/splash/splash_view.dart';
+import 'package:firebase_2/firebase_asif_taj/view/splash/splash_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
-class PostView extends StatefulWidget {
-  const PostView({super.key});
+class AddFirestoreData extends StatefulWidget {
+  const AddFirestoreData({super.key});
 
   @override
-  State<PostView> createState() => _PostViewState();
+  State<AddFirestoreData> createState() => _AddFirestoreDataState();
 }
 
-class _PostViewState extends State<PostView> {
+class _AddFirestoreDataState extends State<AddFirestoreData> {
   final postController = TextEditingController();
   final auth = FirebaseAuth.instance;
-  int id = 0;
-  final databaseRef = FirebaseDatabase.instance;
   ValueNotifier<bool> loading = ValueNotifier(false);
 
+  final firestoredb = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: AppText(text: 'Create Post'),
+        title: AppText(text: 'Add Data Firestore'),
       ),
       body: Center(
         child: Padding(
@@ -49,26 +49,26 @@ class _PostViewState extends State<PostView> {
                     borderRadius: 30,
                     loading: loading.value,
                     onPressed: () {
-                      var user = auth.currentUser!.uid;
                       loading.value = true;
 
-                      var db = databaseRef.ref(user);
-                      String id =
-                          DateTime.now().millisecondsSinceEpoch.toString();
+                      String id = DateTime.now().millisecondsSinceEpoch.toString();
+                      firestoredb
+                          .collection('users')
+                          .doc(id)
+                          .set({
+                            'id' : id,
+                            'title': postController.text.toString(),
 
-                      db.child(id).set(
-                        {
-                          'id': id,
-                          'post': postController.text.toString(),
-                        },
-                      ).then((value) {
-                        loading.value = false;
-                        Utilities().toastMessage("Data Okhata");
-                        Navigator.pop(context);
-                      }).onError((error, stackTrace) {
-                        loading.value = false;
-                        Utilities().toastMessage(error.toString());
-                      });
+                          })
+                          .then((value) {
+                            loading.value = false;
+                            Utilities().toastMessage('Data added to Firestore');
+                            Navigator.pop(context);
+                          })
+                          .onError((error, stackTrace) {
+                            Utilities().toastMessage(error.toString());
+                            loading.value = false;
+                          });
                     },
                   );
                 },
@@ -79,6 +79,4 @@ class _PostViewState extends State<PostView> {
       ),
     );
   }
-
-  
 }
