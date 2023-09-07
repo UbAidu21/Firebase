@@ -1,3 +1,4 @@
+import 'package:firebase_2/firebase_asif_taj/view/home/icons_chech.dart';
 import 'package:firebase_2/utils/functions/utilites.dart';
 import 'package:firebase_2/utils/routs/routes_name.dart';
 import 'package:firebase_2/utils/widgets/app_text.dart';
@@ -8,6 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -20,18 +22,25 @@ class _HomeViewState extends State<HomeView> {
   final auth = FirebaseAuth.instance;
   final searchController = TextEditingController();
   final editController = TextEditingController();
-  
 
   @override
   Widget build(BuildContext context) {
     var user = auth.currentUser!.uid;
-    final ref = FirebaseDatabase.instance.ref(user);    
+    final ref = FirebaseDatabase.instance.ref(user);
     return Scaffold(
       appBar: AppBar(
         title: AppText(text: 'Home Screen'),
         automaticallyImplyLeading: false,
         centerTitle: true,
         actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return IconsCheck();
+                }));
+              },
+              icon: FaIcon(FontAwesomeIcons.share)),
           IconButton(
               onPressed: () {
                 auth.signOut().then((value) {
@@ -88,7 +97,9 @@ class _HomeViewState extends State<HomeView> {
                             onTap: () {
                               Navigator.pop(context);
                               showMyDialog(
-                                  title, snapshot.child('id').value.toString(),context);
+                                  title,
+                                  snapshot.child('id').value.toString(),
+                                  context);
                             },
                           ),
                         ),
@@ -98,7 +109,9 @@ class _HomeViewState extends State<HomeView> {
                             leading: Icon(Icons.delete),
                             title: AppText(text: 'Delete'),
                             onTap: () {
-                              ref.child(snapshot.child('id').value.toString()).remove();
+                              ref
+                                  .child(snapshot.child('id').value.toString())
+                                  .remove();
                               Navigator.pop(context);
                             },
                           ),
@@ -136,7 +149,6 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
   }
-
 }
 
   //TODO: implement with StreamBuilder

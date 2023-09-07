@@ -12,7 +12,7 @@ class SplashServices {
     // Timer.periodic(Duration(seconds: 3), (timer) {
     //   Navigator.push(
     //     context,
-    //     MaterialPageRoute(
+     //     MaterialPageRoute(
     //       builder: (context) {
     //         return LoginView();
     //       },
@@ -27,7 +27,7 @@ class SplashServices {
       Timer(
           const Duration(seconds: 3),
           () => Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return const LoginView();
+                return const HomeView();
               })));
     } else {
       Timer(
